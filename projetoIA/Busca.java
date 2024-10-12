@@ -73,34 +73,33 @@ public class Busca {
     public Node IDS(Node estadoAtual, int limite, int[][] estadoObjetivo) {
         Stack<Node> frontier = new Stack<>();
         Set<Node> visitedStates = new HashSet<>();
-        frontier.push(estadoAtual); // Coloca o estado inicial na pilha
+        frontier.push(estadoAtual); 
 
         while (!frontier.isEmpty()) {
-            Node noAtual = frontier.pop(); // Alterado para noAtual
+            Node noAtual = frontier.pop(); 
            // System.out.println("Expandindo o nó com estado:");
-            //printState(noAtual.estado); // Imprime o estado atual
+            //printState(noAtual.estado); 
 
-            // Verifica se o estado atual é o objetivo
+           
             if (isGoal(noAtual.estado, estadoObjetivo)) {
                 return noAtual; // Encontrou o nó objetivo
             }
 
-            // Expande o nó se a profundidade estiver dentro do limite
             if (noAtual.pai == null || getDepth(noAtual) < limite) {
                 List<Node> possibilidadesJogo = acoesPossiveis(noAtual);
 
                 for (Node possibilidade : possibilidadesJogo) {
                     if (!visitedStates.contains(possibilidade)) {
-                        frontier.push(possibilidade); // Adiciona à fronteira
-                        visitedStates.add(possibilidade); // Marca como visitado
+                        frontier.push(possibilidade); 
+                        visitedStates.add(possibilidade); /
                     }
                 }
             }
         }
-        return null; // Se não encontrou
+        return null; 
     }
 
-    // Método auxiliar para imprimir o estado do quebra-cabeça
+   
     public void printState(int[][] estado) {
         for (int[] linha : estado) {
             for (int numero : linha) {
@@ -119,12 +118,12 @@ public class Busca {
         return depth;
     }
 
-    // Método para obter as ações possíveis
+    
     public List<Node> acoesPossiveis(Node node) {
         List<Node> filhos = new ArrayList<>();
         int linhaZero = -1, colunaZero = -1;
 
-        // Encontrar a posição do zero
+        
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (node.estado[i][j] == 0) {
@@ -134,24 +133,23 @@ public class Busca {
             }
         }
 
-        // Adicionar movimentos possíveis
-        // bruna, estou criando cópias do estado original antes de mover
-        if (linhaZero > 0) { // cima
+        
+        if (linhaZero > 0) { 
             int[][] novoEstado = copiarEstado(node.estado);
             Mover(novoEstado, linhaZero, colunaZero, "cima");
             filhos.add(new Node(novoEstado, node));
         }
-        if (linhaZero < 2) { // baixo
+        if (linhaZero < 2) { 
             int[][] novoEstado = copiarEstado(node.estado);
             Mover(novoEstado, linhaZero, colunaZero, "baixo");
             filhos.add(new Node(novoEstado, node));
         }
-        if (colunaZero > 0) { // esquerda
+        if (colunaZero > 0) { 
             int[][] novoEstado = copiarEstado(node.estado);
             Mover(novoEstado, linhaZero, colunaZero, "esquerda");
             filhos.add(new Node(novoEstado, node));
         }
-        if (colunaZero < 2) { // direita
+        if (colunaZero < 2) { 
             int[][] novoEstado = copiarEstado(node.estado);
             Mover(novoEstado, linhaZero, colunaZero, "direita");
             filhos.add(new Node(novoEstado, node));
