@@ -1,16 +1,16 @@
 import java.util.Arrays;
 public class Node{
-   int [][] estado; //criei o estado linha e coluna
-   Node pai; // referencia pai
+   int [][] estado; 
+   Node pai; 
     int movimentos;
 
    public Node(int[][] estado, Node pai) {
-       this.estado = estado; // contrutoress 
+       this.estado = estado; 
        this.pai = pai;
        this.movimentos = 0;
    }
 
-    // Implementação de hashCode e equals
+   
     
     public boolean equals(Object obj) {
         if (this == obj) return true;
