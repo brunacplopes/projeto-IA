@@ -14,19 +14,17 @@ public class Main {
             {7, 8, 0}
         };
 
-        // Criação do nó inicial
-        Node nodoInicial = new Node(estadoInicial, null); // Sem pai, pois é o estado inicial
-
-        // Instância da classe Busca
+       
+        Node nodoInicial = new Node(estadoInicial, null); 
         Busca busca = new Busca();
 
-        // Limite de profundidade para a busca
-        int limite = 30; // Você pode ajustar este limite conforme necessário
+       
+        int limite = 30;
 
-        // Chamada do método de busca
+       
         Node resultado = busca.IDS(nodoInicial, limite, estadoObjetivo);
 
-        // Verifica o resultado
+        
         if (resultado != null) {
             System.out.println("Objetivo encontrado!");
             int movimentos = busca.getDepth(resultado);
